@@ -1,5 +1,6 @@
 import './app.postcss'
 import App from './GemOS.svelte'
+import { writable } from 'svelte/store'
 
 class Dispatcher {
   #events: Record<string, { listeners: Array<(...data: any[]) => null> } >
@@ -55,6 +56,12 @@ class Dispatcher {
       });
   }  
 }
+
+type Win = {
+  x: number,
+  y: number
+}
+
 
 const api = {
   messages: new Dispatcher()

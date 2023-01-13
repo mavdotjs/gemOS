@@ -1,6 +1,6 @@
 <script>
-	export let left = 100;
-	export let top = 100;
+	export let left = Math.random() * 100;
+	export let top = Math.random() * 100;
 	
 	let moving = false;
 	
@@ -22,16 +22,19 @@
 </script>
 
 <style>
-	div {
+	div.topbar {
 		user-select: none;
 		cursor: move;
 		border: solid 1px gray;
-		position: absolute;
 	}
 </style>
-
-<div on:mousedown={onMouseDown} style="left: {left}px; top: {top}px;">
-	<slot></slot>
-</div>
+<section style="left: {left}px; top: {top}px;" class="absolute">
+    <div on:mousedown={onMouseDown} class="bg-green-200 topbar">
+        Name
+    </div>
+    <div on:resize={console.log} class="!resize flex border-2 overflow-hidden">
+        <slot></slot>{Math.random()}
+    </div>
+</section>
 
 <svelte:window on:mouseup={onMouseUp} on:mousemove={onMouseMove} />
